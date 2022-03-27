@@ -9,11 +9,13 @@ class CacheClearService
         $files = new \RecursiveDirectoryIterator(DIR_CACHE, \FilesystemIterator::SKIP_DOTS);
 
         foreach ($files as $file) {
-            if ($file->isFile() && $file->getFilename() === 'index.html') {
-                continue;
-            }
+            if ($file->isFile()) {
+                if ($file->getFilename() === 'index.html') {
+                    continue;
+                }
 
-            unlink($file);
+                unlink($file);
+            }
         }
     }
 }
